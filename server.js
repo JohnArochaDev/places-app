@@ -1,16 +1,16 @@
 //////////////////////////////////
-//   Import Dependencies      ////
+//// Import Dependencies      ////
 //////////////////////////////////
 const express = require('express') // import express framework
 require('dotenv').config() // import/load ENV variables
 const path = require('path') // import path module
 const middleware = require('./utils/middleware')
 /////////////////////////
-//   Import Routers  ////
+///  Import Routers  ////
 /////////////////////////
 
 ////////////////////////////////////////////////////
-//   Create the app object + set up view engine ////
+///  Create the app object + set up view engine ////
 ////////////////////////////////////////////////////
 const app = express() // call the express function
 
@@ -19,20 +19,21 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 /////////////////////
-//   Middleware  ////
+//// Middleware  ////
 /////////////////////
 middleware(app)
 
 /////////////////
-//   Routes  ////
+//// Routes  ////
 /////////////////
 // basic home route
 app.get('/', (req, res) => {
-    res.send('the app is connected')
+    const { username, loggedIn, userId } = req.session
+    res.render('home.ejs', { username, loggedIn, userId })
 })
 
 //////////////////////////
-//   Server Listener  ////
+//// Server Listener  ////
 //////////////////////////
 const PORT = process.env.PORT
 
