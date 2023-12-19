@@ -21,19 +21,19 @@ const router = express.Router()
 router.get('/signup', (req, res) => {
     const { username, loggedIn, userId } = req.session
 
-    res.render('users/signup', {usernamne, loggedIn, userId })
+    res.render('users/signup', {username, loggedIn, userId })
 })
 //Get Login
 router.get('/login', (req, res) => {
     const { username, loggedIn, userId } = req.session
 
-    res.render('users/login', {usernamne, loggedIn, userId })
+    res.render('users/login', {username, loggedIn, userId })
 })
 //Get Logout
 router.get('/logout', (req, res) => {
     const { username, loggedIn, userId } = req.session
 
-    res.render('users/logout', {usernamne, loggedIn, userId })
+    res.render('users/logout', {username, loggedIn, userId })
 })
 
 
