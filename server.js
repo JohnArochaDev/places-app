@@ -1,5 +1,5 @@
 //////////////////////////////////
-//// Import Dependencies      ////
+//   Import Dependencies      ////
 //////////////////////////////////
 const express = require('express') // import express framework
 require('dotenv').config() // import/load ENV variables
@@ -19,12 +19,12 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 /////////////////////
-//// Middleware  ////
+//   Middleware  ////
 /////////////////////
 middleware(app)
 
 /////////////////
-//// Routes  ////
+//   Routes  ////
 /////////////////
 // basic home route
 app.get('/', (req, res) => {
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 })
 
 //////////////////////////
-//// Server Listener  ////
+//   Server Listener  ////
 //////////////////////////
 const PORT = process.env.PORT
 

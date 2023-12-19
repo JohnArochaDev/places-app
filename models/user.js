@@ -1,33 +1,33 @@
-// Schema and dependencies
+/////////////////////////////////////
+//   Our Schema and dependencies ////
+/////////////////////////////////////
 const mongoose = require('../utils/connection')
+
+// destructuring the Schema and model from mongoose
 const { Schema, model } = mongoose
 
 
-
-
-
-// Schema Definition
+///////////////////////////
+//   Schema definition ////
+///////////////////////////
 const userSchema = new Schema({
     username: {
         type: String,
         required: true,
         unique: true
     },
-    passowrd: {
-        type String,
+    password: {
+        type: String,
         required: true
     }
 })
 
-
-
-
-
-// Create user model
+///////////////////////////
+//   create user model ////
+///////////////////////////
 const User = model('User', userSchema)
 
-
-
-
-// Export user model
+///////////////////////////
+//   export user model ////
+///////////////////////////
 module.exports = User
