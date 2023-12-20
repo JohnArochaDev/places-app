@@ -1,17 +1,17 @@
 /////////////////////////////
-//   Import Dependencies ////
+//// Import Dependencies ////
 /////////////////////////////
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
 ///////////////////////
-//   Create Router ////
+//// Create Router ////
 ///////////////////////
 const router = express.Router()
 
 //////////////////////////////
-//   Routes + Controllers ////
+//// Routes + Controllers ////
 //////////////////////////////
 // GET -> SignUp - /users/signup
 router.get('/signup', (req, res) => {
@@ -42,10 +42,12 @@ router.post('/signup', async (req, res) => {
             // the new user will be created and redirected to the login page
             res.redirect('/users/login')
         })
-        .catch(error => {
+        .catch(err => {
             console.log('error')
 
-            res.send('something went wrong')
+            // res.send('something went wrong')
+            // using our new error page
+            res.redirect(`/error?error=${err}`)
         })
 })
 
@@ -83,20 +85,18 @@ router.post('/login', async (req, res) => {
                     // once we're logged in, redirect to the home page
                     res.redirect('/')
                 } else {
-                    res.send('something went wrong - no pw match')    
+                    res.redirect(`/error?error=something%20wrong%20with%20credentials`)
                 }
 
             } else {
-                res.send('something went wrong - no user with that name')
+                res.redirect(`/error`)
             }
         })
-        .catch(error => {
+        .catch(err => {
             console.log('error')
-
-            res.send('something went wrong')
+            res.redirect(`/error?error=${err}`)
         })
 })
-
 
 // GET -> Logout - /users/logout
 router.get('/logout', (req, res) => {
@@ -112,6 +112,6 @@ router.delete('/logout', (req, res) => {
 })
 
 ///////////////////////
-//   Export Router ////
+//// Export Router ////
 ///////////////////////
 module.exports = router
